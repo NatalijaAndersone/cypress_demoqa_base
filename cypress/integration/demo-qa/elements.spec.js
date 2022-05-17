@@ -1,16 +1,34 @@
-import CheckBoxPage from "../../pageObjects/CheckBoxPage";
-import TextBoxPage from "../../pageObjects/textBoxPage";
-import RadioButtonsPage from "../../pageObjects/RadioButtonsPage";
-import WebTablesPage from "../../pageObjects/WebTablesPage";
-import ButtonsPage from "../../pageObjects/ButtonsPage";
-import LinksPage from "../../pageObjects/LinksPage";
+import SelectablePage from "../../pageObjects/SelectablePage";
+
 
 context("Elements Page", () => {
   context("Text box scenarios", () => {
     beforeEach(() => {
-      TextBoxPage.visit();
+      SelectablePage.visit();
     });
 
+    it("Spiežam pogas",()=> {
+      SelectablePage.clickButton.contains("Cras justo odio").click();
+      SelectablePage.clickButton.contains("Morbi leo risus").click();
+
+      SelectablePage.clickButton.contains("Cras justo odio").should("have.class", "active");
+      SelectablePage.clickButton.contains("Morbi leo risus").should("have.class", "active");
+
+      SelectablePage.goToGrid.click();
+      SelectablePage.clickGridButtons.contains("One").click();
+      SelectablePage.clickGridButtons.contains("Three").click();
+      SelectablePage.clickGridButtons.contains("Five").click();
+      SelectablePage.clickGridButtons.contains("Seven").click();
+      SelectablePage.clickGridButtons.contains("Nine").click();
+
+
+      SelectablePage.clickGridButtons.contains("One").should("have.class", "active");
+      SelectablePage.clickGridButtons.contains("Three").should("have.class", "active");
+      SelectablePage.clickGridButtons.contains("Five").should("have.class", "active");
+      SelectablePage.clickGridButtons.contains("Seven").should("have.class", "active");
+      SelectablePage.clickGridButtons.contains("Nine").should("have.class", "active");
+    })
+/*
     it("Filling in Text Boxes", () => {
       // Add scenario stuff here
       // Input information
@@ -190,4 +208,6 @@ context("Elements Page", () => {
       LinksPage.linkResponse.should("contain", "201");
     });
   });
+  */
+})
 });
